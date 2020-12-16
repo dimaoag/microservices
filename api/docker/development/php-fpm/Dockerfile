@@ -1,6 +1,6 @@
 FROM php:8.0-rc-fpm-alpine
 
-RUN apk add --no-cache autoconf g++ make \
+RUN apk add --no-cache autoconf g++ make zip \
     && pecl install xdebug-3.0.1 \
     && rm -rf /tmp/pear \
     && docker-php-ext-enable xdebug

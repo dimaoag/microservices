@@ -36,6 +36,7 @@ services:
             DB_USER: app
             DB_PASSWORD: secret
             DB_NAME: app
+            PHP_IDE_CONFIG: serverName=microservices
         volumes:
             - ./api:/app
 
@@ -48,6 +49,7 @@ services:
             DB_USER: app
             DB_PASSWORD: secret
             DB_NAME: app
+            PHP_IDE_CONFIG: serverName=microservices
         volumes:
             - ./api:/app
 

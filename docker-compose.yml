@@ -7,18 +7,24 @@ services:
         ports:
             - "8070:8080"
             - "8071:8081"
+        networks:
+            - microservices
 
     frontend:
         build:
             context: frontend/docker/development/nginx
         volumes:
             - ./frontend:/app
+        networks:
+            - microservices
 
     frontend-node-cli:
         build:
             context: frontend/docker/development/node
         volumes:
             - ./frontend:/app
+        networks:
+            - microservices
 
     api:
         build:
@@ -26,6 +32,8 @@ services:
             dockerfile: development/nginx/Dockerfile
         volumes:
             - ./api:/app
+        networks:
+            - microservices
 
     api-php-fpm:
         build:
@@ -39,6 +47,8 @@ services:
             PHP_IDE_CONFIG: serverName=microservices
         volumes:
             - ./api:/app
+        networks:
+            - microservices
 
     api-php-cli:
         build:
@@ -52,6 +62,8 @@ services:
             PHP_IDE_CONFIG: serverName=microservices
         volumes:
             - ./api:/app
+        networks:
+            - microservices
 
     api-postgres:
         image: postgres:13.1-alpine
@@ -63,3 +75,9 @@ services:
             - ./api/var/docker/postgres:/var/lib/postgresql/data
         ports:
             - "54371:5432"
+        networks:
+            - microservices
+
+networks:
+    microservices:
+        name: microservices

@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::resource('users', Api\User\UserController::class);
+Route::apiResource('users', Api\User\UserController::class);

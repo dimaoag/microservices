@@ -4,10 +4,11 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\User;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Api\Controller;
+use App\Http\Requests\User\UserCreateRequest;
+use App\Http\Requests\User\UserUpdateRequest;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
@@ -22,19 +23,17 @@ class UserController extends Controller
         return new JsonResponse($user);
     }
 
-    public function store(Request $request): JsonResponse
+    public function store(UserCreateRequest $request): JsonResponse
     {
-        $data = $request->all();
-        $data['password'] = Hash::make($data['password']);
+        $data = $request->only('first_name', 'last_name', 'email') +
+        ['password' => Hash::make($request->get('password'))];
 
         return new JsonResponse(User::create($data), Response::HTTP_CREATED);
     }
 
-    public function update(Request $request, User $user): JsonResponse
+    public function update(UserUpdateRequest $request, User $user): JsonResponse
     {
-        $data = $request->all();
-        $data['password'] = Hash::make($data['password']);
-        $user->update($data);
+        $user->update($request->all());
 
         return new JsonResponse($user, Response::HTTP_ACCEPTED);
     }

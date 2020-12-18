@@ -16,13 +16,14 @@
         "laravel/tinker": "^2.5"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-master",
+        "barryvdh/laravel-ide-helper": "^2.8",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^0.0.5",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.3.3"
+        "phpunit/phpunit": "^9.3.3",
+        "roave/security-advisories": "dev-master"
     },
     "config": {
         "optimize-autoloader": true,
@@ -55,6 +56,14 @@
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-install-cmd": [
+            "php artisan ide-helper:generate",
+            "php artisan ide-helper:models -N"
+        ],
+        "post-update-cmd": [
+            "php artisan ide-helper:generate",
+            "php artisan ide-helper:models -N"
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"

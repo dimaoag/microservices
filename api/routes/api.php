@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api as Api;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('login', 'App\Http\Controllers\Api\Auth\AuthController@login');
-Route::apiResource('users', Api\User\UserController::class);
+Route::post('registration', 'App\Http\Controllers\Api\Auth\AuthController@register');
+
+Route::group(['middleware' => 'auth:api', 'namespace' => 'App\Http\Controllers\Api'], static function () {
+    Route::apiResource('users', 'User\UserController');
+});
+

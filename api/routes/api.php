@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::post('login', 'App\Http\Controllers\Api\Auth\AuthController@login');
 Route::apiResource('users', Api\User\UserController::class);

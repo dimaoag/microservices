@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\User;
 
-use App\Models\User;
+use App\Models\User\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Api\Controller;
@@ -15,7 +15,7 @@ class UserController extends Controller
 {
     public function index(): JsonResponse
     {
-        return new JsonResponse(User::all());
+        return new JsonResponse(User::paginate(10));
     }
 
     public function show(User $user): JsonResponse

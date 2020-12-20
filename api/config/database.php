@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Str;
 
+/**
+ * @psalm-suppress UndefinedConstant
+ */
+
 return [
 
     /*

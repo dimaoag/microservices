@@ -19,4 +19,3 @@ Route::post('registration', 'App\Http\Controllers\Api\Auth\AuthController@regist
 Route::group(['middleware' => 'auth:api', 'namespace' => 'App\Http\Controllers\Api'], static function () {
     Route::apiResource('users', 'User\UserController');
 });
-

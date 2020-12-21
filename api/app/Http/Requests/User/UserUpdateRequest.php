@@ -6,6 +6,7 @@ namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/** @psalm-suppress PropertyNotSetInConstructor */
 class UserUpdateRequest extends FormRequest
 {
     public function authorize(): bool

@@ -7,7 +7,7 @@ namespace App\Http\Requests\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
-class UserCreateRequest extends FormRequest
+class ChangeInfoRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -17,10 +17,8 @@ class UserCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => 'required|string',
+            'first_name' => 'string|min:1',
             'last_name' => 'string',
-            'email' => 'email|unique:users,email',
-            'password' => 'min:6'
         ];
     }
 }

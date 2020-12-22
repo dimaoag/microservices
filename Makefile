@@ -5,8 +5,8 @@ up: docker-up
 down: docker-down
 update: api-composer-update
 restart: down up
-check: lint analyze validate-schema test
-lint: api-lint frontend-lint cucumber-lint
+check: lint analyze
+lint: api-lint
 analyze: api-analyze
 validate-schema: api-validate-schema
 test: api-test api-fixtures frontend-test

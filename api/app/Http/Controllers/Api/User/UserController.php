@@ -6,11 +6,14 @@ namespace App\Http\Controllers\Api\User;
 
 use App\Models\User\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Api\Controller;
-use App\Http\Requests\User\UserCreateRequest;
-use App\Http\Requests\User\UserUpdateRequest;
+use App\Http\Requests\User\CreateRequest;
+use App\Http\Requests\User\UpdateRequest;
+use App\Http\Requests\User\ChangeInfoRequest;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Requests\User\ChangePasswordRequest;
 
 class UserController extends Controller
 {
@@ -24,7 +27,7 @@ class UserController extends Controller
         return new JsonResponse($user);
     }
 
-    public function store(UserCreateRequest $request): JsonResponse
+    public function store(CreateRequest $request): JsonResponse
     {
         $data = $request->only('first_name', 'last_name', 'email') +
         ['password' => Hash::make($request->get('password'))];
@@ -32,7 +35,7 @@ class UserController extends Controller
         return new JsonResponse(User::create($data), Response::HTTP_CREATED);
     }
 
-    public function update(UserUpdateRequest $request, User $user): JsonResponse
+    public function update(UpdateRequest $request, User $user): JsonResponse
     {
         $user->update($request->all());
 
@@ -42,6 +45,25 @@ class UserController extends Controller
     public function destroy(int $id): JsonResponse
     {
         User::destroy($id);
+        return new JsonResponse(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function user(): JsonResponse
+    {
+        return new JsonResponse(Auth::user());
+    }
+
+    public function changeInfo(ChangeInfoRequest $request, User $user): JsonResponse
+    {
+        $user->update($request->only('first_name', 'last_name'));
+
+        return new JsonResponse($user, Response::HTTP_ACCEPTED);
+    }
+
+    public function changePassword(ChangePasswordRequest $request, User $user): JsonResponse
+    {
+        $user->update(['password' => Hash::make($request->get('password'))]);
+
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }
 }

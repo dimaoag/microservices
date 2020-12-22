@@ -10,7 +10,7 @@ class AddRoleIdFieldToUsersTable extends Migration
     public function up(): void
     {
         Schema::table('users', static function (Blueprint $table) {
-            $table->unsignedBigInteger('role_id')->default(Role::USER);
+            $table->unsignedBigInteger('role_id')->default(Role::USER)->after('email');
 
             $table->foreign('role_id', 'user_role_id_fk')->references('id')->on('roles');
         });

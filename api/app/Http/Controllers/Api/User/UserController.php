@@ -9,11 +9,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Api\Controller;
-use App\Http\Requests\User\CreateRequest;
-use App\Http\Requests\User\UpdateRequest;
-use App\Http\Requests\User\ChangeInfoRequest;
+use App\Http\Requests\User\User\CreateRequest;
+use App\Http\Requests\User\User\UpdateRequest;
+use App\Http\Requests\User\User\ChangeInfoRequest;
 use Symfony\Component\HttpFoundation\Response;
-use App\Http\Requests\User\ChangePasswordRequest;
+use App\Http\Requests\User\User\ChangePasswordRequest;
 
 class UserController extends Controller
 {

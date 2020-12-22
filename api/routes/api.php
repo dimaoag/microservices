@@ -11,4 +11,5 @@ Route::group(['middleware' => 'auth:api', 'namespace' => 'App\Http\Controllers\A
     Route::put('users/{user}/change-password', 'User\UserController@changePassword');
 
     Route::apiResource('users', 'User\UserController');
+    Route::apiResource('roles', 'User\RoleController');
 });

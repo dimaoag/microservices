@@ -6,6 +6,7 @@ down: docker-down
 update: api-composer-update
 restart: down up
 check: lint analyze
+fix: api-lint-fix
 lint: api-lint
 analyze: api-analyze
 validate-schema: api-validate-schema
@@ -58,6 +59,9 @@ api-validate-schema:
 
 api-lint:
 	docker-compose run --rm api-php-cli composer phpcs
+
+api-lint-fix:
+	docker-compose run --rm api-php-cli composer phpcbf
 
 api-analyze:
 	docker-compose run --rm api-php-cli composer psalm

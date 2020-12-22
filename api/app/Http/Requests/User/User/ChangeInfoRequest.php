@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\User\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
-class UpdateRequest extends FormRequest
+class ChangeInfoRequest extends FormRequest
 {
     public function authorize(): bool
     {

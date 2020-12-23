@@ -62,6 +62,7 @@ api-lint:
 
 api-lint-fix:
 	docker-compose run --rm api-php-cli composer phpcbf
+	docker-compose run --rm api-php-cli composer psalm -- --alter --issues=MissingReturnType --dry-run
 
 api-analyze:
 	docker-compose run --rm api-php-cli composer psalm

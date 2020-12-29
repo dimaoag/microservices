@@ -21,6 +21,11 @@ class Order extends Model
         });
     }
 
+    public function getFullNameAttribute(): string
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
     public function items(): HasMany
     {
         return $this->hasMany(OrderItem::class, 'order_id', 'id');

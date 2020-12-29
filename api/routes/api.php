@@ -11,6 +11,7 @@ Route::group(['middleware' => 'auth:api', 'namespace' => 'App\Http\Controllers\A
     Route::get('user', 'User\UserController@user');
     Route::put('users/{user}/change-info', 'User\UserController@changeInfo');
     Route::put('users/{user}/change-password', 'User\UserController@changePassword');
+    Route::get('orders/export', 'Order\OrderController@export');
 
     Route::apiResource('users', 'User\UserController');
     Route::apiResource('roles', 'User\RoleController');

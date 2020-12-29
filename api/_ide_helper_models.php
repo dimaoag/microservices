@@ -20,6 +20,8 @@ namespace App\Models\Order{
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read string $full_name
+ * @property-read float $total
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Order\OrderItem[] $items
  * @property-read int|null $items_count
  * @method static \Illuminate\Database\Eloquent\Builder|Order newModelQuery()
@@ -88,10 +90,29 @@ namespace App\Models\Product{
 
 namespace App\Models\User{
 /**
+ * App\Models\User\Permission
+ *
+ * @property int $id
+ * @property string $name
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User\Role[] $roles
+ * @property-read int|null $roles_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission whereName($value)
+ */
+	class Permission extends \Eloquent {}
+}
+
+namespace App\Models\User{
+/**
  * App\Models\User\Role
  *
  * @property int $id
  * @property string $name
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User\Permission[] $permissions
+ * @property-read int|null $permissions_count
  * @method static \Illuminate\Database\Eloquent\Builder|Role newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Role newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Role query()

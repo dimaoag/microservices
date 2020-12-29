@@ -14,6 +14,13 @@ class Order extends Model
 
     protected $guarded = ['id'];
 
+    public function getTotalAttribute(): float
+    {
+        return $this->items->sum(static function (OrderItem $item) {
+            return $item->price * $item->quantity;
+        });
+    }
+
     public function items(): HasMany
     {
         return $this->hasMany(OrderItem::class, 'order_id', 'id');

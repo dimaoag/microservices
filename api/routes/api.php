@@ -6,6 +6,8 @@ Route::post('login', 'App\Http\Controllers\Api\Auth\AuthController@login');
 Route::post('registration', 'App\Http\Controllers\Api\Auth\AuthController@register');
 
 Route::group(['middleware' => 'auth:api', 'namespace' => 'App\Http\Controllers\Api'], static function () {
+    Route::post('logout', 'Auth\AuthController@logout');
+
     Route::post('upload', 'FileController@upload');
 
     Route::get('user', 'User\UserController@user');

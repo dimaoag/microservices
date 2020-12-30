@@ -7,31 +7,44 @@ namespace App\Http\Controllers\Api\User;
 use App\Models\User\Role;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Api\Controller;
+use App\Http\Resources\User\RoleResource;
 use App\Http\Requests\User\Role\RoleRequest;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class RoleController extends Controller
 {
-    public function index(): JsonResponse
+    public function index(): AnonymousResourceCollection
     {
-        return new JsonResponse(Role::all());
+        return RoleResource::collection(Role::all());
     }
 
-    public function show(Role $role): JsonResponse
+    public function show(Role $role): RoleResource
     {
-        return new JsonResponse($role);
+        return new RoleResource($role);
     }
 
     public function store(RoleRequest $request): JsonResponse
     {
-        return new JsonResponse(Role::create($request->only('name')), Response::HTTP_CREATED);
+        $role = Role::create($request->only('name'));
+        $permissions = $request->get('permissions');
+
+        foreach ($permissions as $permissionId) {
+            $role->permissions()->attach([
+                'permission_id' => $permissionId
+            ]);
+        }
+
+        return new JsonResponse(new RoleResource($role), Response::HTTP_CREATED);
     }
 
     public function update(RoleRequest $request, Role $role): JsonResponse
     {
         $role->update($request->only('name'));
+        $permissions = $request->get('permissions');
+        $role->permissions()->sync($permissions);
 
-        return new JsonResponse($role, Response::HTTP_ACCEPTED);
+        return new JsonResponse(new RoleResource($role), Response::HTTP_ACCEPTED);
     }
 
     public function destroy(int $id): JsonResponse

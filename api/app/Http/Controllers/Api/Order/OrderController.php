@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Order;
 
 use App\Models\Order\Order;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Api\Controller;
 use App\Http\Resources\Order\OrderResource;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -14,6 +15,8 @@ class OrderController extends Controller
 {
     public function index(): AnonymousResourceCollection
     {
+        Gate::authorize('view', 'orders');
+
         $orders = Order::paginate(10);
 
         return OrderResource::collection($orders);
@@ -21,11 +24,15 @@ class OrderController extends Controller
 
     public function show(Order $order): OrderResource
     {
+        Gate::authorize('view', 'orders');
+
         return new OrderResource($order);
     }
 
     public function export(): StreamedResponse
     {
+        Gate::authorize('view', 'orders');
+
         $headers = [
             'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0',
             'Content-Type'        => 'text/csv',

@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api\User;
 use App\Models\User\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Api\Controller;
 use App\Http\Resources\User\UserResource;
@@ -21,6 +22,8 @@ class UserController extends Controller
 {
     public function index(): AnonymousResourceCollection
     {
+        Gate::authorize('view', 'users');
+
         $users = User::with(['role'])->paginate(10);
 
         return UserResource::collection($users);
@@ -28,6 +31,8 @@ class UserController extends Controller
 
     public function show(User $user): UserResource
     {
+        Gate::authorize('view', 'users');
+
         return new UserResource($user);
     }
 
@@ -48,12 +53,15 @@ class UserController extends Controller
 
     public function destroy(int $id): JsonResponse
     {
+        Gate::authorize('edit', 'users');
+
         User::destroy($id);
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }
 
     public function user(): UserResource
     {
+        /** @var User $user */
         $user = Auth::user();
 
         return (new UserResource($user))->additional([

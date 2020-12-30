@@ -58,7 +58,7 @@
     "scripts": {
         "phpcs": "phpcs --standard=phpcs.xml",
         "phpcbf": "phpcbf --standard=phpcs.xml",
-        "psalm": "psalm --config=psalm.xml",
+        "psalm": "psalm --config=psalm.xml --show-info=true",
         "php-cs-fixer": "php-cs-fixer --config=./.php_cs",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",

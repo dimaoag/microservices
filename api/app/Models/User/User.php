@@ -27,4 +27,9 @@ class User extends Authenticatable
     {
         return $this->role->permissions->pluck('name')->toArray();
     }
+
+    public function isHasAccess(string $permission): bool
+    {
+        return in_array($permission, $this->permissions(), true);
+    }
 }

@@ -5,15 +5,16 @@ declare(strict_types=1);
 namespace App\Http\Requests\User\User;
 
 use App\Models\User\Role;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Http\FormRequest;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
 class CreateRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return true;
+        return (bool) Gate::authorize('edit', 'users');
     }
 
     public function rules(): array

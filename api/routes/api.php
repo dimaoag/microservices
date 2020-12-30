@@ -9,6 +9,7 @@ Route::group(['middleware' => 'auth:api', 'namespace' => 'App\Http\Controllers\A
     Route::post('logout', 'Auth\AuthController@logout');
 
     Route::post('upload', 'FileController@upload');
+    Route::get('chart', 'DashboardController@chart');
 
     Route::get('user', 'User\UserController@user');
     Route::put('users/{user}/change-info', 'User\UserController@changeInfo');

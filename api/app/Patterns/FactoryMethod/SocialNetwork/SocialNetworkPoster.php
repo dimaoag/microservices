@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Patterns\FactoryMethod;
+namespace App\Patterns\FactoryMethod\SocialNetwork;
 
 abstract class SocialNetworkPoster
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Patterns\FactoryMethod\LinkedIn;
+namespace App\Patterns\FactoryMethod\SocialNetwork\LinkedIn;
 
-use App\Patterns\FactoryMethod\SocialNetwork;
-use App\Patterns\FactoryMethod\SocialNetworkPoster;
+use App\Patterns\FactoryMethod\SocialNetwork\SocialNetwork;
+use App\Patterns\FactoryMethod\SocialNetwork\SocialNetworkPoster;
 
 class LinkedInPoster extends SocialNetworkPoster
 {

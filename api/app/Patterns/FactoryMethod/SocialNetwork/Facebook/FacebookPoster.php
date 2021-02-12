@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Patterns\FactoryMethod\Facebook;
+namespace App\Patterns\FactoryMethod\SocialNetwork\Facebook;
 
-use App\Patterns\FactoryMethod\SocialNetwork;
-use App\Patterns\FactoryMethod\SocialNetworkPoster;
+use App\Patterns\FactoryMethod\SocialNetwork\SocialNetwork;
+use App\Patterns\FactoryMethod\SocialNetwork\SocialNetworkPoster;
 
 class FacebookPoster extends SocialNetworkPoster
 {

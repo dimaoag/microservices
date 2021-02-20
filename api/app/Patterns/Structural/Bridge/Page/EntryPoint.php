@@ -30,8 +30,8 @@ class EntryPoint
          * выполнения.
          */
         $page->changeRenderer($JSONRenderer);
-        echo "JSON view of a simple content page, rendered with the same client code:\n";
         $viewer->view($page);
+        //===========================================
 
         $product = new Product(
             "123",
@@ -45,7 +45,6 @@ class EntryPoint
         $viewer->view($page);
 
         $page->changeRenderer($JSONRenderer);
-        echo "JSON view of a simple content page, with the same client code:\n";
         $viewer->view($page);
     }
 }

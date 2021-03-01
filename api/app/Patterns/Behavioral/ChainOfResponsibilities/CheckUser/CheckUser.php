@@ -8,9 +8,11 @@ abstract class CheckUser
 {
     private ?CheckUser $nextCheck = null;
 
-    public function then(CheckUser $checkUser): void
+    public function then(CheckUser $checkUser): CheckUser
     {
         $this->nextCheck = $checkUser;
+
+        return $checkUser;
     }
 
     abstract public function check(User $user): void;

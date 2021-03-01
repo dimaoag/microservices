@@ -8,13 +8,12 @@ class EntryPoint
 {
     public function run(): void
     {
-        $checkId = new CheckId();
-        $checkName = new CheckName();
-        $checkEmail = new CheckEmail();
+        $checker = new CheckId();
+        $checker
+            ->then(new CheckName())
+            ->then(new CheckEmail());
 
-        $checkId->then($checkName);
-        $checkName->then($checkEmail);
 
-        $checkId->check(new User());
+        $checker->check(new User());
     }
 }

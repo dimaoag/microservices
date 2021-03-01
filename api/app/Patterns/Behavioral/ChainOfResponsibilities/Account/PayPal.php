@@ -8,9 +8,9 @@ class PayPal extends Account
 {
     public string $name;
 
-    public function __construct(int $balance, Account $account)
+    public function __construct(int $balance)
     {
-        parent::__construct($balance, $account);
+        parent::__construct($balance);
         $this->name = 'PayPal';
     }
 }

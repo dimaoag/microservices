@@ -6,13 +6,19 @@ namespace App\Patterns\Behavioral\ChainOfResponsibilities\Account;
 
 abstract class Account
 {
-    public int $balance;
-    public ?Account $account = null;
+    private int $balance;
+    private ?Account $account = null;
 
-    public function __construct(int $balance, ?Account $account = null)
+    public function __construct(int $balance)
     {
         $this->balance = $balance;
+    }
+
+    public function setNext(Account $account): Account
+    {
         $this->account = $account;
+
+        return $account;
     }
 
     public function pay(int $orderPrice): bool
@@ -28,7 +34,7 @@ abstract class Account
         return false;
     }
 
-    public function canPay(int $amount): bool
+    private function canPay(int $amount): bool
     {
         return $this->balance >= $amount;
     }

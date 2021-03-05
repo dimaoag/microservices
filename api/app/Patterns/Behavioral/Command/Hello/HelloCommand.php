@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Patterns\Behavioral\Command;
+namespace App\Patterns\Behavioral\Command\Hello;
 
 /**
  * This concrete command calls "print" on the Receiver, but an external

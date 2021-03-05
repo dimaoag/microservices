@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Patterns\Behavioral\Command;
+namespace App\Patterns\Behavioral\Command\Hello;
 
 /**
  * This concrete command tweaks receiver to add current date to messages

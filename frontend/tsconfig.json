@@ -10,7 +10,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "baseUrl": "./vue-admin",
+    "baseUrl": "",
     "types": [
       "webpack-env"
     ],
@@ -34,6 +34,6 @@
     "tests/**/*.tsx"
   ],
   "exclude": [
-    "vue-admin/node_modules"
+    "node_modules"
   ]
 }

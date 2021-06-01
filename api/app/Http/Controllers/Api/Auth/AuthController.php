@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Api\Controller;
 use Illuminate\Support\Facades\Cookie;
 use Symfony\Component\HttpFoundation\Response;
-use App\Http\Requests\Auth\RegistrationRequest;
+use App\Http\Requests\Api\Auth\RegistrationRequest;
 
 class AuthController extends Controller
 {

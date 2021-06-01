@@ -8,8 +8,8 @@ use App\Models\Product\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Api\Controller;
-use App\Http\Requests\Product\CreateRequest;
-use App\Http\Requests\Product\UpdateRequest;
+use App\Http\Requests\Api\Product\CreateRequest;
+use App\Http\Requests\Api\Product\UpdateRequest;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Resources\Product\ProductResource;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -32,14 +32,14 @@ class ProductController extends Controller
         return new ProductResource($product);
     }
 
-    public function store(CreateRequest $request): JsonResponse
+    public function store(\App\Http\Requests\Api\Product\CreateRequest $request): JsonResponse
     {
         Gate::authorize('edit', 'products');
 
         return new JsonResponse(new ProductResource(Product::create($request->all())), Response::HTTP_CREATED);
     }
 
-    public function update(UpdateRequest $request, Product $product): JsonResponse
+    public function update(\App\Http\Requests\Api\Product\UpdateRequest $request, Product $product): JsonResponse
     {
         Gate::authorize('edit', 'products');
 

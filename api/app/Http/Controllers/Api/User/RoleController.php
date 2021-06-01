@@ -9,7 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Api\Controller;
 use App\Http\Resources\User\RoleResource;
-use App\Http\Requests\User\Role\RoleRequest;
+use App\Http\Requests\Api\User\Role\RoleRequest;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 

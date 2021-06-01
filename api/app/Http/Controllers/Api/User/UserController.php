@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Api\Controller;
 use App\Http\Resources\User\UserResource;
-use App\Http\Requests\User\User\CreateRequest;
+use App\Http\Requests\Api\User\User\CreateRequest;
 use Symfony\Component\HttpFoundation\Response;
-use App\Http\Requests\User\User\UpdateRequest;
-use App\Http\Requests\User\User\ChangeInfoRequest;
-use App\Http\Requests\User\User\ChangePasswordRequest;
+use App\Http\Requests\Api\User\User\UpdateRequest;
+use App\Http\Requests\Api\User\User\ChangeInfoRequest;
+use App\Http\Requests\Api\User\User\ChangePasswordRequest;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class UserController extends Controller
@@ -44,7 +44,7 @@ class UserController extends Controller
         return new JsonResponse(new UserResource(User::create($data)), Response::HTTP_CREATED);
     }
 
-    public function update(UpdateRequest $request, User $user): JsonResponse
+    public function update(\App\Http\Requests\Api\User\User\UpdateRequest $request, User $user): JsonResponse
     {
         $user->update($request->all());
 
@@ -71,7 +71,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function changeInfo(ChangeInfoRequest $request, User $user): JsonResponse
+    public function changeInfo(\App\Http\Requests\Api\User\User\ChangeInfoRequest $request, User $user): JsonResponse
     {
         $user->update($request->only('first_name', 'last_name'));
 

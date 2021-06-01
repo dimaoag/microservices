@@ -8,7 +8,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\FileUploadRequest;
+use App\Http\Requests\Api\FileUploadRequest;
 use Symfony\Component\HttpFoundation\Response;
 
 class FileController extends Controller

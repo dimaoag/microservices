@@ -2,18 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests\Product;
+namespace App\Http\Requests\Api\Product;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Api\JsonRequest;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
-class UpdateRequest extends FormRequest
+class CreateRequest extends JsonRequest
 {
-    public function authorize(): bool
-    {
-        return true;
-    }
-
     public function rules(): array
     {
         return [

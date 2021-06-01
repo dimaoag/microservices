@@ -2,18 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests;
-
-use Illuminate\Foundation\Http\FormRequest;
+namespace App\Http\Requests\Api;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
-class FileUploadRequest extends FormRequest
+class FileUploadRequest extends JsonRequest
 {
-    public function authorize(): bool
-    {
-        return true;
-    }
-
     public function rules(): array
     {
         return [

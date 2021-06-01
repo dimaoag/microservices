@@ -2,18 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests\User\Role;
+namespace App\Http\Requests\Api\User\Role;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Api\JsonRequest;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
-class RoleRequest extends FormRequest
+class RoleRequest extends JsonRequest
 {
-    public function authorize(): bool
-    {
-        return true;
-    }
-
     public function rules(): array
     {
         return [

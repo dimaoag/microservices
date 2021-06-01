@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import Register from '@/pages/public/auth/Register.vue'
 
 const routes: Array<RouteRecordRaw> = [
   // {
@@ -6,6 +7,10 @@ const routes: Array<RouteRecordRaw> = [
   //   name: 'Home',
   //   component: Home
   // }
+  {
+    path: '/register',
+    component: Register
+  }
 ]
 
 const router = createRouter({

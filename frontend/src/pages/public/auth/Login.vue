@@ -1,16 +1,16 @@
 <template>
   <div class="login-wrapper text-center">
     <main class="form-signin">
-      <form>
+      <form @submit.prevent="submit">
         <h1 class="h3 mb-3 fw-normal">Please log in</h1>
 
         <div class="form-floating">
-          <input type="email" class="form-control" id="email" required>
+          <input type="email" class="form-control" id="email" required autofocus  v-model="email">
           <label for="email">Email address</label>
         </div>
 
         <div class="form-floating">
-          <input type="password" class="form-control" id="password" required>
+          <input type="password" class="form-control" id="password" required v-model="password">
           <label for="password">Password</label>
         </div>
 
@@ -21,10 +21,35 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
+import { useRouter } from 'vue-router'
+import axios from 'axios'
 
 export default defineComponent({
   name: 'Register',
+  setup() {
+    const email = ref('')
+    const password = ref('')
+    const router = useRouter()
+
+    const submit = async () => {
+
+      const response = await axios.post('login', {
+        email: email.value,
+        password: password.value,
+      })
+
+      localStorage.setItem('token', response.data.token)
+
+      await router.push('/')
+    }
+
+    return {
+      email,
+      password,
+      submit
+    }
+  }
 });
 </script>
 

@@ -53,15 +53,13 @@ export default defineComponent({
 
     const submit = async () => {
 
-      const response = await axios.post('http://localhost:8071/api/registration', {
+      const response = await axios.post('registration', {
         first_name: firstName.value,
         last_name: lastName.value,
         email: email.value,
         password: password.value,
         password_confirm: passwordConfirm.value
       })
-
-      console.log(response)
 
       await router.push('/login')
     }

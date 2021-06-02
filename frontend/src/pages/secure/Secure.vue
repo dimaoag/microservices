@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <Header />
+    <Header :user="user" />
     <div class="container-fluid">
       <div class="row">
         <Sidebar />
@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import Sidebar from '@/components/Sidebar.vue'
 import Header from '@/components/Header.vue'
 import Main from '@/components/Main.vue'
@@ -27,15 +27,20 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter()
+    const user = ref(null)
 
     onMounted(async () => {
       try {
         const response = await axios.get('user')
-        console.log(response)
+        user.value = response.data.data
       } catch (e) {
         await router.push('/login')
       }
     })
+
+    return {
+      user
+    }
   }
 });
 </script>

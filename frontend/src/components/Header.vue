@@ -1,30 +1,30 @@
 <template>
-  <header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Company name</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+  <header class="p-3 mb-3 border-bottom">
+    <div class="container-fluid">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="#" class="nav-link px-2 link-secondary">Overview</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark">Inventory</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark">Products</a></li>
+        </ul>
+
+        <div class="dropdown text-end">
+          <router-link to="/profile" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          </router-link>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+            <li>
+              <router-link to="/profile" class="dropdown-item">{{ user?.first_name + ' ' + user?.last_name }}</router-link>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="javascript:void(0)" @click="logOut">Log out</a></li>
           </ul>
-          <div class="text-end">
-<!--            <button type="button" class="btn btn-outline-light me-2">Login</button>-->
-            <button type="button" class="btn btn-warning" @click="logOut">Log out</button>
-          </div>
         </div>
       </div>
-    </nav>
+    </div>
   </header>
 </template>
 
@@ -35,6 +35,7 @@ import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'Header',
+  props: ['user'],
   setup() {
     const router = useRouter()
 
@@ -50,3 +51,4 @@ export default defineComponent({
   }
 });
 </script>
+

@@ -23,6 +23,16 @@
         </tbody>
       </table>
     </div>
+    <nav>
+      <ul class="pagination">
+        <li class="page-item">
+          <a href="javascript:void(0)" class="page-link" @click="prev">Prev</a>
+        </li>
+        <li class="page-item">
+          <a href="javascript:void(0)" class="page-link" @click="next">Next</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
 
@@ -34,14 +44,33 @@ export default defineComponent({
   name: 'Users',
   setup() {
     const users = ref([])
+    const page = ref(1)
+    const lastPage = ref(0)
 
-    onMounted(async () => {
-      const response = await axios.get('users')
+    const load = async () => {
+      const response = await axios.get(`users?page=${page.value}`)
       users.value = response.data.data
-    })
+      lastPage.value = response.data.meta.last_page
+    }
+
+    onMounted(load)
+
+    const prev = async () => {
+      if (page.value === 1) return;
+      page.value--
+      await load()
+    }
+
+    const next = async () => {
+      if (page.value === lastPage.value) return;
+      page.value++
+      await load()
+    }
 
     return {
-      users
+      users,
+      prev,
+      next
     }
   }
 });

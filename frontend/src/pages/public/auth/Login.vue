@@ -39,7 +39,10 @@ export default defineComponent({
         password: password.value,
       })
 
-      localStorage.setItem('token', response.data.token)
+      const token = response.data.token
+      console.log(token)
+      localStorage.removeItem('token')
+      localStorage.setItem('token', token)
 
       await router.push('/')
     }

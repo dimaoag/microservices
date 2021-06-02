@@ -18,10 +18,10 @@
               <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </li>
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+          <div class="text-end">
+<!--            <button type="button" class="btn btn-outline-light me-2">Login</button>-->
+            <button type="button" class="btn btn-warning" @click="logOut">Log out</button>
+          </div>
         </div>
       </div>
     </nav>
@@ -30,8 +30,23 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import axios from 'axios'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
-  name: 'Header'
+  name: 'Header',
+  setup() {
+    const router = useRouter()
+
+    const logOut = async () => {
+      await axios.post('logout')
+      localStorage.clear()
+      await router.push('/login')
+    }
+
+    return {
+      logOut
+    }
+  }
 });
 </script>

@@ -11,10 +11,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted } from 'vue'
 import Sidebar from '@/components/Sidebar.vue'
 import Header from '@/components/Header.vue'
 import Main from '@/components/Main.vue'
+import axios from 'axios'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'Secure',
@@ -23,6 +25,18 @@ export default defineComponent({
     Header,
     Main
   },
+  setup() {
+    const router = useRouter()
+
+    onMounted(async () => {
+      try {
+        const response = await axios.get('user')
+        console.log(response)
+      } catch (e) {
+        await router.push('/login')
+      }
+    })
+  }
 });
 </script>
 

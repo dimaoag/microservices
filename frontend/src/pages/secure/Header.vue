@@ -3,12 +3,13 @@
     <div class="container-fluid">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
-
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 link-secondary">Overview</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark">Inventory</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark">Products</a></li>
+          <li>
+            <router-link to="/" class="nav-link px-2 link-dark" active-class="link-secondary" exact>Dashboard</router-link>
+          </li>
+          <li>
+            <router-link to="/users" class="nav-link px-2 link-dark" active-class="link-secondary" exact>Users</router-link>
+          </li>
         </ul>
 
         <div class="dropdown text-end">

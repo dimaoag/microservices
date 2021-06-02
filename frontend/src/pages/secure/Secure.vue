@@ -3,7 +3,6 @@
     <Header :user="user" />
     <div class="container-fluid">
       <div class="row">
-        <Sidebar />
         <Main />
       </div>
     </div>
@@ -12,16 +11,14 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
-import Sidebar from '@/components/Sidebar.vue'
-import Header from '@/components/Header.vue'
-import Main from '@/components/Main.vue'
+import Header from '@/pages/secure/Header.vue'
+import Main from '@/pages/secure/Main.vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'Secure',
   components: {
-    Sidebar,
     Header,
     Main
   },

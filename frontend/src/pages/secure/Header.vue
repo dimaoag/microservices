@@ -10,6 +10,9 @@
           <li>
             <router-link to="/users" class="nav-link px-2" active-class="link-secondary">Users</router-link>
           </li>
+          <li>
+            <router-link to="/roles" class="nav-link px-2" active-class="link-secondary">Roles</router-link>
+          </li>
         </ul>
 
         <div class="dropdown text-end">

@@ -24,7 +24,7 @@ class UserController extends Controller
     {
         Gate::authorize('view', 'users');
 
-        $users = User::with(['role'])->paginate(10);
+        $users = User::with(['role'])->orderBy('id')->paginate(10);
 
         return UserResource::collection($users);
     }

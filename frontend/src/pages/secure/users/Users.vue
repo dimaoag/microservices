@@ -25,7 +25,7 @@
             <td>{{ user.role.name }}</td>
             <td>
               <div class="btn-group">
-                <button class="btn btn-sm btn-outline-warning">Edit</button>
+                <router-link :to="'/users/' + user.id" class="btn btn-sm btn-outline-warning">Edit</router-link>
                 <button class="btn btn-sm btn-outline-danger" @click="remove(user.id)">Remove</button>
               </div>
             </td>

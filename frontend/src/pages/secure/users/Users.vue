@@ -44,6 +44,7 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'
 import axios from 'axios'
+import Entity from '@/interfaces/Entity'
 
 export default defineComponent({
   name: 'Users',
@@ -76,7 +77,7 @@ export default defineComponent({
       if (confirm('Are you sure?')) {
         await axios.delete(`users/${id}`)
 
-        users.value = users.value.filter((u: {id: number}) => u.id !== id)
+        users.value = users.value.filter((e: Entity) => e.id !== id)
       }
     }
 

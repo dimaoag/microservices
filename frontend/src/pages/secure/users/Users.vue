@@ -18,7 +18,12 @@
             <td>{{ user.first_name + ' ' + user.last_name }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.role.name }}</td>
-            <td>text</td>
+            <td>
+              <div class="btn-group">
+                <button class="btn btn-sm btn-outline-warning">Edit</button>
+                <button class="btn btn-sm btn-outline-danger" @click="remove(user.id)">Remove</button>
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -67,10 +72,19 @@ export default defineComponent({
       await load()
     }
 
+    const remove = async (id: number) => {
+      if (confirm('Are you sure?')) {
+        await axios.delete(`users/${id}`)
+
+        users.value = users.value.filter((u: {id: number}) => u.id !== id)
+      }
+    }
+
     return {
       users,
       prev,
-      next
+      next,
+      remove
     }
   }
 });

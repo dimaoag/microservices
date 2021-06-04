@@ -3,7 +3,7 @@
     <h2>Products</h2>
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
       <div class="btn-toolbar">
-        <router-link to="/roles/create" class="btn btn-sm btn-outline-success">Add</router-link>
+        <router-link to="/products/create" class="btn btn-sm btn-outline-success">Add</router-link>
       </div>
     </div>
     <div class="table-responsive">

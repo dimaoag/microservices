@@ -1,6 +1,11 @@
 <template>
   <div class="users">
     <h2>Orders</h2>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
+      <div class="btn-toolbar">
+        <button class="btn btn-sm btn-outline-success" @click="exportOrders">Export</button >
+      </div>
+    </div>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
         <thead>
@@ -64,11 +69,22 @@ export default defineComponent({
       }
     }
 
+    const exportOrders = async () => {
+      const response = await axios.get('orders/export', {responseType: 'blob'})
+      const blob = new Blob([response.data], {type: 'text/csv'})
+      const downloadLink = window.URL.createObjectURL(response.data)
+      const link = document.createElement('a')
+      link.href = downloadLink
+      link.download = 'orders.csv'
+      link.click()
+    }
+
     return {
       orders,
       lastPage,
       remove,
-      load
+      load,
+      exportOrders,
     }
   }
 });

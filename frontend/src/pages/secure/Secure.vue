@@ -15,6 +15,7 @@ import Header from '@/pages/secure/components/Header.vue'
 import Main from '@/pages/secure/components/Main.vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: 'Secure',
@@ -25,11 +26,13 @@ export default defineComponent({
   setup() {
     const router = useRouter()
     const user = ref(null)
+    const store = useStore()
 
     onMounted(async () => {
       try {
         const response = await axios.get('user')
         user.value = response.data.data
+        await store.dispatch('setUser', user.value)
       } catch (e) {
         await router.push('/login')
       }

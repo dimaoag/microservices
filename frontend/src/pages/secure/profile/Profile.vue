@@ -37,10 +37,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue'
+import {defineComponent, ref, onMounted, computed} from 'vue'
 import axios from 'axios'
-import { useRouter, useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
 import User from '@/classes/User'
+import {useStore} from 'vuex'
 
 
 export default defineComponent({
@@ -52,11 +53,10 @@ export default defineComponent({
     const password = ref('')
     const passwordConfirm = ref('')
     const router = useRouter()
-    const { params } = useRoute()
+    const store = useStore()
 
     onMounted(async () => {
-      const response = await axios.get('user')
-      user.value = response.data.data
+      user.value = computed(() => store.state.user).value
 
       firstName.value = user.value.first_name
       lastName.value = user.value.last_name

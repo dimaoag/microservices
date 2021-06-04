@@ -12,6 +12,7 @@
           <tr>
             <th>#</th>
             <th>Name</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -35,11 +36,12 @@
 import { defineComponent, ref, onMounted } from 'vue'
 import axios from 'axios'
 import Entity from '@/interfaces/Entity'
+import Role from '@/classes/Role'
 
 export default defineComponent({
   name: 'Roles',
   setup() {
-    const roles = ref([])
+    const roles = ref([] as Role[])
 
     const load = async () => {
       const response = await axios.get('roles')

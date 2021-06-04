@@ -13,6 +13,9 @@
           <li>
             <router-link to="/roles" class="nav-link px-2" active-class="link-secondary">Roles</router-link>
           </li>
+          <li>
+            <router-link to="/products" class="nav-link px-2" active-class="link-secondary">Products</router-link>
+          </li>
         </ul>
 
         <div class="dropdown text-end">

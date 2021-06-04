@@ -11,8 +11,8 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
-import Header from '@/pages/secure/Header.vue'
-import Main from '@/pages/secure/Main.vue'
+import Header from '@/pages/secure/components/Header.vue'
+import Main from '@/pages/secure/components/Main.vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 

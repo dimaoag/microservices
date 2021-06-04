@@ -9,6 +9,7 @@ import UpdateUser from '@/pages/secure/users/UpdateUser.vue'
 import Roles from '@/pages/secure/roles/Roles.vue'
 import CreateRole from '@/pages/secure/roles/CreateRole.vue'
 import UpdateRole from '@/pages/secure/roles/UpdateRole.vue'
+import Products from '@/pages/secure/products/Products.vue'
 
 const routes: Array<RouteRecordRaw> = [
   { path: '/register', component: Register },
@@ -25,6 +26,7 @@ const routes: Array<RouteRecordRaw> = [
       { path: '/roles', component: Roles },
       { path: '/roles/create', component: CreateRole },
       { path: '/roles/:id', component: UpdateRole },
+      { path: '/products', component: Products },
     ]
   }
 ]

@@ -18,11 +18,7 @@
           <div class="form-group">
             <label for="image" class="form-label">Image</label>
             <input type="text" class="form-control" id="image" v-model="image">
-            <label class="btn btn-primary">
-              Upload
-              <input type="file" hidden @change="changeFile($event.target.files)">
-            </label>
-
+            <ImageUpload @file-uploaded="image = $event"/>
           </div>
         </div>
 
@@ -44,24 +40,18 @@
 import { defineComponent, ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
+import ImageUpload from '@/pages/secure/components/ImageUpload.vue'
 
 
 export default defineComponent({
   name: 'CreateProduct',
+  components: {ImageUpload},
   setup() {
     const title = ref('')
     const description = ref('')
     const image = ref('')
     const price = ref(0)
     const router = useRouter()
-
-    const changeFile = async (files: FileList) => {
-      const file: any = files.item(0)
-      const data = new FormData
-      data.append('file', file)
-      const response = await axios.post('upload', data)
-      image.value = response.data.url
-    }
 
     const submit = async () => {
       await axios.post('products', {
@@ -80,7 +70,6 @@ export default defineComponent({
       image,
       price,
       submit,
-      changeFile
     }
   }
 });

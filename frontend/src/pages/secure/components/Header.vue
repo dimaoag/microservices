@@ -21,17 +21,9 @@
           </li>
         </ul>
 
-        <div class="dropdown text-end">
-          <router-link to="/profile" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-          </router-link>
-          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-            <li>
-              <router-link to="/profile" class="dropdown-item">{{ user?.first_name + ' ' + user?.last_name }}</router-link>
-            </li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="javascript:void(0)" @click="logOut">Log out</a></li>
-          </ul>
+        <div class="d-flex text-end">
+          <router-link to="/profile" class="dropdown-item">{{ user?.first_name + ' ' + user?.last_name }}</router-link>
+          <a class="dropdown-item" href="javascript:void(0)" @click="logOut">Log out</a>
         </div>
       </div>
     </div>

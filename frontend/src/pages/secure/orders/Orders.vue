@@ -71,7 +71,6 @@ export default defineComponent({
 
     const exportOrders = async () => {
       const response = await axios.get('orders/export', {responseType: 'blob'})
-      const blob = new Blob([response.data], {type: 'text/csv'})
       const downloadLink = window.URL.createObjectURL(response.data)
       const link = document.createElement('a')
       link.href = downloadLink

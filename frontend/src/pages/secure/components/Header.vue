@@ -16,6 +16,9 @@
           <li>
             <router-link to="/products" class="nav-link px-2" active-class="link-secondary">Products</router-link>
           </li>
+          <li>
+            <router-link to="/orders" class="nav-link px-2" active-class="link-secondary">Orders</router-link>
+          </li>
         </ul>
 
         <div class="dropdown text-end">

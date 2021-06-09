@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <Header :user="user" />
+    <Header />
     <div class="container-fluid">
       <div class="row">
         <Main />
@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue'
+import {computed, defineComponent, onMounted, ref} from 'vue'
 import Header from '@/pages/secure/components/Header.vue'
 import Main from '@/pages/secure/components/Main.vue'
 import axios from 'axios'
@@ -27,12 +27,16 @@ export default defineComponent({
     const router = useRouter()
     const user = ref(null)
     const store = useStore()
+    const currentUser = computed(() => store.state.user).value
+    console.log(currentUser)
 
     onMounted(async () => {
       try {
-        const response = await axios.get('user')
-        user.value = response.data.data
-        await store.dispatch('setUser', user.value)
+        if (! currentUser) {
+          const response = await axios.get('user')
+          user.value = response.data.data
+          await store.dispatch('setUser', user.value)
+        }
       } catch (e) {
         await router.push('/login')
       }

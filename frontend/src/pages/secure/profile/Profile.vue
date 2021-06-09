@@ -63,10 +63,12 @@ export default defineComponent({
     })
 
     const submitProfileData = async () => {
-      await axios.put('users/'+user.value.id+'/change-info', {
+      const response = await axios.put('users/'+user.value.id+'/change-info', {
         first_name: firstName.value,
         last_name: lastName.value
       })
+
+      await store.dispatch('setUser', response.data)
 
       await router.push('/profile')
     }

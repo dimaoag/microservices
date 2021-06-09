@@ -34,15 +34,10 @@ export default defineComponent({
 
     const submit = async () => {
 
-      const response = await axios.post('login', {
+      await axios.post('login', {
         email: email.value,
         password: password.value,
       })
-
-      const token = response.data.token
-      console.log(token)
-      localStorage.removeItem('token')
-      localStorage.setItem('token', token)
 
       await router.push('/')
     }

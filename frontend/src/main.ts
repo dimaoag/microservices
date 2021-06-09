@@ -10,7 +10,8 @@ import "bootstrap"
 import { BootstrapIconsPlugin } from 'bootstrap-icons-vue';
 
 axios.defaults.baseURL = 'http://localhost:8071/api/'
-axios.defaults.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+// axios.defaults.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+axios.defaults.withCredentials = true
 
 createApp(App)
   .use(store)

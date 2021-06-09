@@ -27,7 +27,7 @@ export default defineComponent({
     const router = useRouter()
     const user = ref(null)
     const store = useStore()
-    const currentUser = computed(() => store.state.user).value
+    const currentUser = computed(() => store.state.User.user).value
     console.log(currentUser)
 
     onMounted(async () => {
@@ -35,7 +35,7 @@ export default defineComponent({
         if (! currentUser) {
           const response = await axios.get('user')
           user.value = response.data.data
-          await store.dispatch('setUser', user.value)
+          await store.dispatch('User/setUser', user.value)
         }
       } catch (e) {
         await router.push('/login')

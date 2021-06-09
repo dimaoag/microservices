@@ -1,16 +1,11 @@
 import { createStore } from 'vuex'
-import User from "@/classes/User";
+import UserModule from "@/store/UserModule";
 
 export default createStore({
-  state: {
-    user: null as any
-  },
-  mutations: {
-    SET_USER: (state, user) => state.user = user
-  },
-  actions: {
-    setUser: ({ commit }, user) => commit('SET_USER', user)
-  },
+  state: {},
+  mutations: {},
+  actions: {},
   modules: {
+    User: UserModule
   }
 })

@@ -56,7 +56,7 @@ export default defineComponent({
     const store = useStore()
 
     onMounted(async () => {
-      user.value = computed(() => store.state.user).value
+      user.value = computed(() => store.state.User.user).value
 
       firstName.value = user.value.first_name
       lastName.value = user.value.last_name
@@ -68,7 +68,7 @@ export default defineComponent({
         last_name: lastName.value
       })
 
-      await store.dispatch('setUser', response.data)
+      await store.dispatch('User/setUser', response.data)
 
       await router.push('/profile')
     }
